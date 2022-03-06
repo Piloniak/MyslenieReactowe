@@ -4,18 +4,39 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 class Main extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      games: []
+    }
+  }
+
+  nazwyGier(month){
+    const gry=[{name:"Beholder",month:"marzec",id:0},{name:"Minecraft",month:"styczen",id:1},{name:"Monopoly",month:"pazdziernik",id:2},{name:"Losowa",month:"listopad",id:3},{name:"Gra",month:"sierpien",id:4},{name:"Planszowa",month:"czerwiec",id:5},{name:"Na",month:"maj",id:6},{name:"Planszeo",month:"maj",id:7}];
+    
+    return(
+    
+    gry.map((gra, index)=>{
+      <h1 key={index+gra.name}>{gra.month}</h1>
+      if(gra.month==month)
+        return <Game name={gra.name} key={gra.name}/> })
+     
+    )}
+
   render(){
-    const gry=["Beholder","Minecraft","Monopoly","Losowa","Gra","Planszowa","Na","Planszeo"]
+    const miesiace=["styczen","luty","marzec","kwiecien","maj","czerwiec","lipiec","sierpien","wrzesien","pazdziernik","listopad","grudzien"];
     return(
       <div>
         {Nav}
         <SortingButtons/>
-        {gry.map((gra)=>
-        <Game name={gra} key={gra}/>)}
+        {miesiace.map((miesiac)=>
+        this.nazwyGier(miesiac))}       
       </div>
     );
   }
 }
+
+
 
 class SortingButtons extends React.Component{
   render(){
@@ -43,6 +64,7 @@ class Game extends React.Component{
   render(){
     return(
       <h3>{this.props.name}</h3>
+      
     )
   }
 }
